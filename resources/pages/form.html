@@ -1,0 +1,132 @@
+<div class="fixed-action-btn vertical">
+	<a class="btn-floating btn-large" tooltipped data-position="left" data-delay="50" data-tooltip="Személy hozzáadása" href ng-click="addUser()">
+		<i class="material-icons black">group_add</i>
+	</a>
+</div>
+<!-- <div static-include="resources/pages/template/header.html"/> -->
+<div class="container">
+	<form ng-submit="save()">
+		<div class="row">
+			<div class="col s12" align="center">
+			    <h1>Visszajelzés</h1>
+			</div>
+		</div>
+		<div class="card-panel row" ng-repeat="user in users" id="userId_{{$index+1}}">
+			<div class="col s12">
+			    <h3>{{$index+1}}. személy 
+			    	<a tooltipped data-position="top" data-delay="50" data-tooltip="Törlés" href ng-click="removeUser($index)" class=" right" ><i class="material-icons red-text" >cancel</i></a>
+			    </h3>
+			</div>
+			<div class="col s12">
+				<div class="row">
+					<div class="col s12 m6" input-field>
+						<i class="material-icons prefix">account_circle</i>
+					    <input id="name" type="text" ng-model="user.name" class="validate" required>
+					    <label for="name">Teljes név <span class="red-text">*</span></label>
+					</div>
+					<div class="col s12 m6" input-field>
+						<i class="material-icons prefix">account_circle</i>
+					    <input id="nickName" type="text" ng-model="user.nickName" class="validate">
+					    <label for="nickName">Becenév</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12 m6" input-field>
+						<i class="material-icons prefix">email</i>
+					    <input id="emailAddress" type="email" ng-model="user.emailAddress" class="validate">
+					    <label for="emailAddress">Email cím</label>
+					</div>
+					<div class="col s12 m6" input-field>
+						<i class="material-icons prefix">phone</i>
+					    <input id="phoneNumber" type="tel" ng-model="user.phoneNumber" class="validate">
+					    <label for="phoneNumber">Telefonszám</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12 only-small-min-top-padding">
+					    <div class="switch">
+						    <label>
+						      <span ng-class="{'black-text':!user.civilCeremony}">Sajnos nem tudok részt venni a polgári szertartáson és az azt követő vacsorán</span>
+						      <input type="checkbox" ng-model="user.civilCeremony">
+						      <span class="lever"></span>
+						      <span ng-class="{'black-text':user.civilCeremony}">Részt veszek a polgári szertartáson és az azt követő vacsorán</span>
+						    </label>
+						 </div>
+					</div>
+				</div>
+				<div class="row" ng-if="user.civilCeremony">
+					<div class="col s12 only-small-min-top-padding" ng-class="{'m6':user.child,'input-field':user.child}" >
+					    <div class="switch">
+						    <label>
+						      <span ng-class="{'black-text':!user.child}">Felnőtt (12+)</span>
+						      <input type="checkbox" ng-model="user.child">
+						      <span class="lever"></span>
+						      <span ng-class="{'black-text':user.child}">Gyerek (0-12)</span>
+						    </label>
+						 </div>
+					</div>
+					<div class="col s12 m6 only-small-med-top-padding" input-field ng-if="user.child">
+						<i class="material-icons prefix">child_care</i>
+					    <input id="age" type="number" ng-model="user.age" ng-required="user.civilCeremony && user.child" min=0 max=12 class="validate">
+					    <label for="age">Gyerek életkora <span class="red-text">*</span></label>
+					</div>
+				</div>
+				<div class="row" ng-if="user.civilCeremony && user.child">			
+					<div class="col s12">
+					    <div class="switch">
+						    <label>
+						      <span ng-class="{'black-text':!user.highChair}">Nem szükséges etetőszék</span>
+						      <input type="checkbox" ng-model="user.highChair">
+						      <span class="lever"></span>
+						      <span ng-class="{'black-text':user.highChair}">Etetőszék szükséges</span>
+						    </label>
+						 </div>
+					</div>
+				</div>	
+				<div class="row" ng-if="user.civilCeremony">
+					<div class="col s12 m6 only-small-min-top-padding">
+					    <div class="switch">
+						    <label>
+						      <span ng-class="{'black-text':!user.accommodation}">Nem kérek szállást</span>
+						      <input type="checkbox" ng-model="user.accommodation">
+						      <span class="lever"></span>
+						      <span ng-class="{'black-text':user.accommodation}">Kérek szállást</span>
+						    </label>
+						 </div>
+					</div>
+					<div class="col s12 m6 only-small-min-top-padding">
+					    <div class="switch">
+						    <label>
+						      <span ng-class="{'black-text':!user.travelHelp}">Egyénileg megoldom az utazást</span>
+						      <input type="checkbox" ng-model="user.travelHelp">
+						      <span class="lever"></span>
+						      <span ng-class="{'black-text':user.travelHelp}">Segítségra van szükségem az utazásban</span>
+						    </label>
+						 </div>
+					</div>
+				</div>	
+				<div class="row" ng-if="user.civilCeremony">
+					<div class="col s12" input-field>
+						<i class="material-icons prefix">fastfood</i>
+					    <textarea id="allergy" ng-model="user.allergy" class="materialize-textarea validate"></textarea>
+		    			<label for="allergy">Ételallergia / ételintolerancia</label>
+					</div>
+				</div>
+				<div class="row" ng-if="user.civilCeremony">
+					<div class="col s12" input-field>
+						<i class="material-icons prefix">music_note</i>
+					    <textarea id="music" ng-model="user.music" class="materialize-textarea validate"></textarea>
+		    			<label for="music">Kedvenc zeneszámok</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+			    <button class="btn waves-effect waves-light right" type="submit">Visszajelzés küldése
+					<i class="material-icons right">send</i>
+				</button>
+			</div>
+		</div>
+	</form>
+</div>

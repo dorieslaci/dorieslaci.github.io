@@ -1,0 +1,34 @@
+<div class="clock-container">		
+	<div class="clock " align="center"></div>
+	<div class="message"></div>	
+</div>
+<div class="response" ng-if='$root.user==undefined'>		
+	<a class="waves-effect waves-light btn black" ng-click="openLogin()"><i class="material-icons right">send</i>Bejelentkezés</a>	
+</div>
+<div class="slider fullscreen ">
+    <ul class="slides">
+        <li>
+            <img ng-src="{{mobile ? 'resources/images/IMG_20180615_185848_mobil.jpg' : 'resources/images/IMG_20180615_185848_desctop.jpg'}}">
+        </li>
+        <li>
+            <img ng-src="{{mobile ? 'resources/images/IMG_20180825_145607_mobil.jpg' : 'resources/images/IMG_20180825_145607_desctop.jpg'}}">
+        </li>
+    </ul>
+</div>
+<div id=loginModal class="modal">
+	<form ng-submit="login()">
+		<div class="modal-content">
+			<h5 class="light">Bejelentkezés</h5>
+	   		<div class="row">
+		       	<div class="col s12" input-field>
+		           	<input id="password" type="password" class="validate" ng-model="signInUser.password" required>
+		       		<label for="password">Jelszó</label>
+		       	</div>
+		   	</div>
+	    </div>
+	    <div class="modal-footer">
+	    	<button class="waves-effect waves-green btn-flat jackfall-text-color" type="submit" name="action"><i class="material-icons left" >send</i><b>Bejelentkezés</b></button>
+	        <a href class=" modal-action modal-close waves-effect waves-red btn-flat jackfall-text-color" ><i class="material-icons left" >cancel</i><b>Mégsem</b></a>
+	    </div>
+	</form>
+</div>

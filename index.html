@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Main">
+	<head>
+		<script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>	
+		
+		<meta charset="UTF-8">
+<!-- 		<base href="/DoriLaci/"> -->
+	  	<title>Dóri és Laci</title>
+	  	<meta property="og:image" content="resources/images/IMG_20180825_145607_3.jpg" />
+		<meta property="og:title" content="Dóri és Laci Esküvő" />
+		<meta property="og:description" content="2019.07.06."/>
+	  	<link rel="stylesheet" href="resources/css/1/flipclock.css?2">
+	  	<!--Import jQuery before materialize.js-->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.js"></script>
+	  	<script src="resources/js/1/flipclock.js?2"></script>
+	  	
+	  	<!--Import Google Icon Font-->
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <!--Import materialize.css-->
+	    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.css"  media="screen,projection"/>
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">		
+		
+	    <!--Let browser know website is optimized for mobile-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	  	
+	  	<!--Import angular js-->	
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>	    
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.16/angular-filter.js"></script>
+	    
+	    <script src="resources/js/1/ng-static-include.js?2"></script>
+	    <script src="resources/js/1/ng-map.min.js?2"></script>
+	    <script src="resources/js/1/sha256.js?2"></script>
+	    <script src="resources/js/1/match-media.js?2"></script>
+	    
+	    <script src="resources/js/1/app.js?2"></script>
+	    <script src="resources/js/1/superController.js?2"></script>
+	    <script src="resources/js/1/counterController.js?2"></script>
+	    <script src="resources/js/1/formController.js?2"></script>
+	    <script src="resources/js/1/routeController.js?2"></script>
+	    <script src="resources/js/1/homeController.js?2"></script>
+	    <script src="resources/js/1/parkingController.js?2"></script>
+	</head>
+	<body>
+		<div class="navbar-fixed" ng-if="$root.user!=undefined">
+		   	<nav>
+		        <div class="nav-wrapper menu darken-4">
+		        	<div class="container big">
+			            <ul id="nav-mobile" class="right">
+			            	<li><a href="" data-activates="slide-out" class="button-collapse" style="display: block;"><i style="font-size: 2rem" class="material-icons">menu</i></a></li>
+			            </ul>
+			            <ul id="nav-mobile" class="left">
+			            	<li><a href="#/kezdolap" class="waves-effect"><i class="material-icons">home</i></a></li>
+			            </ul>
+		            </div>			            
+		        </div>
+		   	</nav>
+		</div>			
+		<ul id="slide-out" class="side-nav header collapsible collapsible-accordion menu">		       
+		    <li class="bold sidebar-header">
+		       	<a href="#/kezdolap" class="waves-effect"><i class="material-icons">home</i>Kezdőlap</a>
+		    </li>
+		    <li class="bold sidebar-header">
+		       	<a href="#/visszajelzes" class="waves-effect"><i class="material-icons">assignment</i>Visszajelzés</a>
+		    </li>
+		    <li class="bold sidebar-header">
+		       	<a href="#/visszaszamlalo" class="waves-effect"><i class="material-icons">alarm</i>Visszaszámláló</a>
+		    </li>
+		    <li class="bold sidebar-header">
+		       	<a href="#/parkolas" class="waves-effect"><i class="material-icons">local_parking</i>Parkolás</a>
+		    </li>
+		    <li class="bold sidebar-header">
+		       	<a href="#/utvonal" class="waves-effect"><i class="material-icons">navigation</i>Útvonal</a>
+		    </li>
+		    <li><div class="divider"></div></li>
+		    <li class="bold sidebar-header">
+		       	<a href ng-click="$root.logOut()" class="waves-effect"><i class="material-icons">exit_to_app</i>Kijelentkezés</a>
+		    </li>		    
+		</ul>		
+		<div ng-view class="main"></div>	  	
+	</body>
+</html>
