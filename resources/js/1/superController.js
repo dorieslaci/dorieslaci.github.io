@@ -18,6 +18,7 @@ SuperCtrl.controller('SuperCtrl', function SuperCtrl($scope,$rootScope,$http,$lo
 		}
 	}	
 	
+	$scope.isSending=false;
 	
 	$scope.errorMessage = function(message){
 		Materialize.toast(message, 5000);
@@ -34,6 +35,14 @@ SuperCtrl.controller('SuperCtrl', function SuperCtrl($scope,$rootScope,$http,$lo
 	$rootScope.logOut=function(){
 		$rootScope.user=undefined;
 		$scope.validate();
+	}
+	
+	// Initialize Firebase
+	if (!firebase.apps.length) {
+		$http.get('resources/json/firebase.json')
+		.then(function(res){
+			firebase.initializeApp(res.data);
+		});
 	}
 	
 });

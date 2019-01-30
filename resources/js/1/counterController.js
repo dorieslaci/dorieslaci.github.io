@@ -58,10 +58,11 @@ CounterCtrl.controller('CounterCtrl', function CounterCtrl($rootScope,$scope,$ht
 			$scope.signInUser.password=$rootScope.user.password;
 		}
 		$('#loginModal').modal('open');
-	}	
+	}		
+	
 	
 	$rootScope.login=function(){
-		$('#loginModal').modal('close');
+		$('#loginModal').modal('close');		
 		if(sha256.convertToSHA256($scope.signInUser.password)=="b225fc528a48dc51416d77af1746795ff3e3fe8b9fc8b78167e86ba66bfaeeea"){
 			$rootScope.user={
 					password:$scope.signInUser.password
@@ -71,9 +72,7 @@ CounterCtrl.controller('CounterCtrl', function CounterCtrl($rootScope,$scope,$ht
 			$rootScope.user=null;
 			$scope.signInUser.password=null;
 			$scope.errorMessage("Helytelen jelszó");
-		}
-		
-		
+		}		
 	}
 	
 	$scope.getImage=function(isMobile,mobileImage,otherImage){

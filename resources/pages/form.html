@@ -3,6 +3,7 @@
 		<i class="material-icons black">group_add</i>
 	</a>
 </div>
+<div static-include="resources/pages/template/preloader.html"/>
 <!-- <div static-include="resources/pages/template/header.html"/> -->
 <div class="container">
 	<form ng-submit="save()">
@@ -123,7 +124,7 @@
 		</div>
 		<div class="row">
 			<div class="col s12">
-			    <button class="btn waves-effect waves-light right" type="submit">Visszajelzés küldése
+			    <button class="btn waves-effect waves-light right" type="submit" ng-class="{'disabled':isSending}">Visszajelzés küldése
 					<i class="material-icons right">send</i>
 				</button>
 			</div>

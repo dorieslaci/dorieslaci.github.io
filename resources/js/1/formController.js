@@ -17,18 +17,12 @@ FormCtrl.controller('FormCtrl', function FormCtrl($rootScope,$scope,$http,$locat
 		dismissible: true
 	});
 	
-	// Initialize Firebase
-	var config = {
-			apiKey: "AIzaSyB7thc0EM6_HAk5OzhcQ-Pq9vqABgtUf94",
-			authDomain: "dorilaci-54ff2.firebaseapp.com",
-			databaseURL: "https://dorilaci-54ff2.firebaseio.com",
-			projectId: "dorilaci-54ff2",
-			storageBucket: "dorilaci-54ff2.appspot.com",
-			messagingSenderId: "1024389506920"
-	};
-	if (!firebase.apps.length) {
-		firebase.initializeApp(config);
-	}
+	$http.get("https://ipinfo.io/").then(function (response) 
+	{
+		$scope.ip = response.data.ip;
+	});
+	
+	
 	
 	
 	$scope.now = function() {
@@ -63,18 +57,29 @@ FormCtrl.controller('FormCtrl', function FormCtrl($rootScope,$scope,$http,$locat
 
 	}
 	
+	$scope.getIp=function(){
+		return $scope.ip!=undefined ? $scope.ip.replace(/\./g,'_') : "xxx";
+	}
 	
 	$scope.save=function(){
-		var fb = {};
-		var i=0;
-		angular.forEach($scope.users, function(value, key) {
-			  fb[i+""]=value;
-			  i++;
-		});
-		
-		firebase.database().ref('responses/'+$scope.now()).set(angular.copy(fb));
-		Materialize.toast("Sikeres válaszadás", 5000);
-		$location.path('/kezdolap');
+		$scope.isSending=true;
+
+		try{
+			var fb = {};
+			var i=0;
+			angular.forEach($scope.users, function(value, key) {
+				  fb[i+""]=value;
+				  i++;
+			});
+			firebase.database().ref('responses/'+$scope.now()+"_"+$scope.getIp()).set(angular.copy(fb));
+			$scope.isSending=false;
+			Materialize.toast("Sikeres válaszadás", 5000);
+			$location.path('/kezdolap');
+		} catch(err) {
+			$scope.isSending=false;
+			Materialize.toast("Váratlan hiba történt", 5000);	
+			console.log(err);
+		}
 	}
 
 	$scope.validate();
