@@ -617,8 +617,19 @@
 	  right: -70px; }
 }
 
-/**Tooltip handler (FAB)*/
+
 @media only screen and (max-width: 992px) {
+	.only-medium-and-down-min-top-padding{
+		padding-top:10px !important;
+	}
+	.only-medium-and-down-med-top-padding{
+		padding-top:20px !important;
+	}
+}
+	
+/**Tooltip handler (FAB)*/
+/* @media only screen and (max-width: 1100px) {	 */
+@media (pointer:coarse) {
   .fixed-action-btn ul {
     display: none;
   }
@@ -657,17 +668,17 @@
     100% { opacity: 1; }
   }
   @-moz-keyframes fadein {
-    /* Firefox */
+    Firefox
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
   @-webkit-keyframes fadein {
-    /* Safari and Chrome */
+    Safari and Chrome
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
   @-o-keyframes fadein {
-    /* Opera */
+    Opera
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
